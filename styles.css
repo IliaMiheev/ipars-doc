@@ -1,0 +1,11 @@
+#docsify-darklight-theme {
+    right: 5px;
+}
+
+a:visited {
+    color: inherit; /* Убирает изменение цвета для посещенной ссылки */
+}
+
+.clear-button.show svg{
+    margin-top: 8px;
+}
