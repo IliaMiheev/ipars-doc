@@ -9,3 +9,9 @@ a:visited {
 .clear-button.show svg{
     margin-top: 8px;
 }
+
+h2 {
+    text-align: center;
+    font-size: 2em;
+    margin-top: 30%;
+}
