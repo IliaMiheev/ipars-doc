@@ -84,9 +84,9 @@ p.getStaticPage(nameFile, 'https://google.com')
 soup = p.returnBs4Object(nameFile)
 
 allTegA = soup.find_all('a')
-a1 = p.getTexts(allTegA, needFix=1)
+textsFromA = p.getTexts(allTegA, needFix=1)
 p.pprint(a1)
 
-a2 = p.getAttributes(allTegA, 'href')
+attributesFromA = p.getAttributes(allTegA, 'href')
 p.pprint(a2)
 ```
