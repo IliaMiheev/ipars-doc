@@ -1,14 +1,14 @@
 ### Working with ZipManager
 
-The ZipManager class is used for archiving a folder of files. It takes only one argument — the compression level for the files.
+The ZipManager class is used for archiving folders of files. It accepts only one argument — one of the possible compression levels:
 
-'none' => No compression
+- none — no compression.
 
-'normal' => Normal compression
+- normal — standard compression.
 
-'hard' => Increased compression
+- hard — increased compression.
 
-'maximum' => Maximum compression
+- maximum — maximum compression.
 
 ```py
 from ipars import ZipManager
@@ -18,13 +18,13 @@ z = ZipManager()
 
 ### Brief Overview of ZipManager Methods
 
-1. The **zip_file** method is used to archive a single file. It takes the path to the source file and the path to the output file.
-2. The **zip_folder** method is used to archive a directory. It takes the path to the source directory and the path to the output file.
+- The **zip_file** method is used for archiving a single file. It accepts the path to the source file and the path to the output file.
 
-### Example of Using ZipManager
+- The **zip_folder** method is used for archiving a directory. It accepts the path to the source directory and the path to the output file.
+
+### Example Usage of ZipManager
 
 ```py
-
 from ipars import ZipManager
 z = ZipManager(compression='maximum')
 

@@ -10,11 +10,11 @@ t = TimerManager()
 
 ### Brief Overview of TimerManager Methods
 
-1. The **start** method marks the starting point of the time measurement.
+- The **start** method marks the starting point of the time measurement.
 
-2. The **end** method marks the endpoint of the time measurement.
+- The **end** method marks the endpoint of the time measurement.
 
-3. The **getWorkTime** method returns the total execution time in the specified format. Supported formats are seconds, minutes, and hours. The ndigits parameter specifies the number of decimal places for rounding; by default, the number is not rounded.
+- The **getWorkTime** method returns the total execution time in the specified format. Supported formats are seconds, minutes, and hours. The ndigits parameter specifies the number of decimal places for rounding; by default, the number is not rounded.
 
 ### Example of Using TimerManager
 
