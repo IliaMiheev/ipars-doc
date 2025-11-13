@@ -34,43 +34,58 @@ for index, url in enumerate(urlList):
 
 - Метод **mkdir** используется для создания папки с именем _nameDir_ если она ещё не существует
 
-### Пример парсера с использованием ipars:
+- Метод **listdir** используется для получения списка файлов в указанной папке 
+
+### Пример использования класса Pars:
 
 ```py
 # О классе ProgressBarManager читай ниже
 from ipars import Pars, ProgressBarManager
 p = Pars()
 nameFile = 'index.html'
-
-# Получаем html страницу
-p.getDynamicPage(nameFile, 'https://duckduckgo.com/?q=теплица+социальных+технологий+youtube&iar=videos&atb=v454-1', closeWindow=0)
-
-# Получаем объект BautifullSoup
-soup = p.returnBs4Object(nameFile)
-
-# Находим все карточки ответов
-# Первые результаты выдачи те что хотелось получить, а остальные нет. Поэтому нам желательно получить первые 84 элемента
-allCards = soup.find_all(class_='b_NgmZrVnRtV8MZMEjLs')[:84]
-
-# Получаем все изображения
-allImg = [card.find('img') for card in allCards]
-
-# Получаем все ссылки
-allSrc = p.getAttributes(allImg, 'src')
-
-# Создаём папку img если её ещё нет
 nameFolder = 'img'
-p.mkdir(nameFolder)
 
-# Создаём объект ProgressBarManager
-bar = ProgressBarManager(len(allSrc))
+def main():
+    # Получаем html страницу
+    p.getDynamicPage(nameFile, 'https://duckduckgo.com/?q=теплица+социальных+технологий+youtube&iar=videos&atb=v454-1', closeWindow=False, timeSleep=5)
 
-# Скачиваем картинки
-for index, url in enumerate(allSrc):
-    url = 'https:' + url
-    p.getStaticPage(f'./{nameFolder}/img{index}.png', url, writeMethod='wb')
-    bar.next()
-bar.finish()
+    # Получаем объект BautifullSoup
+    soup = p.returnBs4Object(nameFile)
+
+    # Находим все карточки ответов
+    # Первые результаты выдачи те что хотелось получить, а остальные нет. Поэтому нам желательно получить первые 84 элемента
+    locator = 'b_NgmZrVnRtV8MZMEjLs'
+    allCards = soup.find_all(class_=locator)[:84]
+    if len(allCards) == 0:
+        print(f'''Something went wrong. Here is a list of possible causes:
+        1) DuckDuckGo has changed the class for video cards. The code uses the locator "{locator}"
+        2) The site did not load. Try increasing the timeSleep parameter or make a request later.''')
+        return
+
+    # Получаем все изображения
+    allImg = [card.find('img') for card in allCards]
+
+    # Получаем все ссылки
+    allSrc = p.getAttributes(allImg, 'src')
+
+    # Создаём папку img если её ещё нет
+    p.mkdir(nameFolder)
+
+    # Создаём объект ProgressBarManager
+    bar = ProgressBarManager(len(allSrc))
+
+    # Скачиваем картинки
+    for index, url in enumerate(allSrc):
+        url = 'https:' + url
+        p.getStaticPage(f'./{nameFolder}/img{index}.png', url, writeMethod='wb')
+        bar.next()
+    bar.finish()
+
+    # Смотрим что появилось в папке img
+    p.pprint(p.listdir(nameFolder))
+
+if __name__=='__main__':
+    main()
 ```
 
 ### Пример использования методов _getAttributes_ и _getTexts_

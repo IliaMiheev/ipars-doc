@@ -34,43 +34,50 @@ for index, url in enumerate(urlList):
 
 - The **mkdir** method is used to create a folder with the name _nameDir_ if it does not already exist.
 
-### Example Parser Using ipars:
+### Example Using the Pars Class:
 
 ```py
 # About the ProgressBarManager class, read below
 from ipars import Pars, ProgressBarManager
 p = Pars()
 nameFile = 'index.html'
-
-# Getting the HTML page
-p.getDynamicPage(nameFile, 'https://duckduckgo.com/?q=теплица+социальных+технологий+youtube&iar=videos&atb=v454-1', closeWindow=0)
-
-# Getting the BeautifulSoup Object
-soup = p.returnBs4Object(nameFile)
-
-# Finding all answer cards
-# The first results are what we wanted, and the rest are not. Therefore, we prefer to get the first 84 elements
-allCards = soup.find*all(class*='b_NgmZrVnRtV8MZMEjLs')[:84]
-
-# Getting all images
-allImg = [card.find('img') for card in allCards]
-
-# Getting all links
-allSrc = p.getAttributes(allImg, 'src')
-
-# Creating a folder img if it does not already exist
 nameFolder = 'img'
-p.mkdir(nameFolder)
 
-# Creating a ProgressBarManager object
-bar = ProgressBarManager(len(allSrc))
+    # Getting the HTML page
+    p.getDynamicPage(nameFile, 'https://duckduckgo.com/?q=теплица+социальных+технологий+youtube&iar=videos&atb=v454-1', closeWindow=False, timeSleep=5)
 
-# Downloading images
-for index, url in enumerate(allSrc):
-url = 'https:' + url
-p.getStaticPage(f'./{nameFolder}/img{index}.png', url, writeMethod='wb')
-bar.next()
-bar.finish()
+    # Getting the BeautifulSoup Object
+    soup = p.returnBs4Object(nameFile)
+
+    # Finding all answer cards
+    # The first results are what we wanted, and the rest are not. Therefore, we prefer to get the first 84 elements
+    locator = 'b_NgmZrVnRtV8MZMEjLs'
+    allCards = soup.find_all(class_=locator)[:84]
+
+    # Getting all images
+    allImg = [card.find('img') for card in allCards]
+
+    # Getting all links
+    allSrc = p.getAttributes(allImg, 'src')
+
+    # Creating a folder img if it does not already exist
+    p.mkdir(nameFolder)
+
+    # Creating a ProgressBarManager object
+    bar = ProgressBarManager(len(allSrc))
+
+    # Downloading images
+    for index, url in enumerate(allSrc):
+        url = 'https:' + url
+        p.getStaticPage(f'./{nameFolder}/img{index}.png', url, writeMethod='wb')
+        bar.next()
+    bar.finish()
+
+    # Let's see what appeared in the img folder
+    p.pprint(p.listdir(nameFolder))
+
+if __name__=='__main__':
+    main()
 ```
 
 ### Example Usage of _getAttributes_ and _getTexts_ Methods
