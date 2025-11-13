@@ -51,13 +51,13 @@
   <link title="dark" href="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-simple-dark.css"
     rel="stylesheet alternative">
 
-  <!-- Мои стили -->
+  <!-- Персональные стили -->
   <link rel="stylesheet" href="./styles.css">
 </head>
 
 <body>
   <div id="app">
-    <h2>Секундочку...</h2>
+    <h2 id="preloaderText">Секундочку...</h2>
   </div>
   <script>
     window.$docsify = {
@@ -73,26 +73,23 @@
       notFoundPage: './_404.md', // страница не найдена
       themeColor: 'orangered', // цветовая тема
       search: {
-        maxAge: 86400000,
-        paths: 'auto',
-        placeholder: 'Поиск',
-        noData: 'Ничего не найдено(',
+        maxAge: 86400000, // хз
+        paths: 'auto', // по каким путям будет осуществляться поиск
+        placeholder: 'Поиск', // надпись внутри поискового поля
+        noData: 'Ничего не найдено(', // сообщение если нет результатов
         depth: 3, // глубина заголовка
         hideOtherSidebarContent: true, // следует ли скрывать другое содержимое боковой панели
       },
     };
-    document.title = 'Документация ipars'
   </script>
-  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
 
 
+<!-- Подключаем Dostifi -->
+<!-- Docsify v4 -->
+<script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
 
-
-
-  </script>
-  <!-- Подключаем Dostifi -->
-  <!-- Docsify v4 -->
-  <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
+<!-- Подключаем поиск -->
+<script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
 
   <!-- Плагин для переключения темы -->
   <script src="//cdn.jsdelivr.net/npm/docsify-darklight-theme@3/dist/docsify-themeable/main.min.js"
