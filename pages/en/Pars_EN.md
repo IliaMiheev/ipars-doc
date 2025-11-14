@@ -55,6 +55,11 @@ nameFolder = 'img'
     # The first results are what we wanted, and the rest are not. Therefore, we prefer to get the first 84 elements
     locator = 'b_NgmZrVnRtV8MZMEjLs'
     allCards = soup.find_all(class_=locator)[:84]
+    if len(allCards) == 0:
+        print(f'''Something went wrong. Here is a list of possible causes:
+        1) DuckDuckGo has changed the class for video cards. The code uses the locator "{locator}"
+        2) The site did not load. Try increasing the timeSleep parameter or make a request later.''')
+        return
 
     # Getting all images
     allImg = [card.find('img') for card in allCards]

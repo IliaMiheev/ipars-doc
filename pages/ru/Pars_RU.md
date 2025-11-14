@@ -60,9 +60,9 @@ def main():
     locator = 'b_NgmZrVnRtV8MZMEjLs'
     allCards = soup.find_all(class_=locator)[:84]
     if len(allCards) == 0:
-        print(f'''Something went wrong. Here is a list of possible causes:
-        1) DuckDuckGo has changed the class for video cards. The code uses the locator "{locator}"
-        2) The site did not load. Try increasing the timeSleep parameter or make a request later.''')
+        print(f'''Что-то пошло не так. Вот список возможных проблем:
+        1) DuckDuckGo изменил назввание класса для карточек с видео. Сейчас используется локатор: "{locator}"
+        2) Сайт не прогрузился. Попробуй увиличить значени параметра timeSleep или выполни запрос позже.''')
         return
 
     # Получаем все изображения
