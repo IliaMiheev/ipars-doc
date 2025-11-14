@@ -34,6 +34,8 @@ for index, url in enumerate(urlList):
 
 - The **mkdir** method is used to create a folder with the name _nameDir_ if it does not already exist.
 
+- The **exists** method is used to check the existence of a file or folder
+
 ### Example Using the Pars Class:
 
 ```py
